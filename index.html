@@ -7,6 +7,25 @@
     <title>Maze Game</title>
   </head>
   <body>
+    <form>
+      <div>
+        <label>Rows</label>
+        <select id="rows">
+          <option value="10" selected="selected">10</option>
+          <option value="15">15</option>
+          <option value="20">20</option>
+        </select>
+      </div>
+      <div>
+        <label>Columns</label>
+        <select id="columns">
+          <option value="10">10</option>
+          <option value="15">15</option>
+          <option value="20">20</option>
+        </select>
+      </div>
+      <button id="button">Change</button>
+    </form>
     <canvas> </canvas>
   </body>
   <script type="module" src="./src/js/index.js"></script>

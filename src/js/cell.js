@@ -90,7 +90,7 @@ export default class Cell {
     let x = (this.colNum * this.parentSize) / columns + 1;
     let y = (this.rowNum * this.parentSize) / columns + 1;
 
-    ctx.fillStyle = 'green'; //Color of visited color
+    // ctx.fillStyle = 'green'; //Color of visited color
     ctx.fillRect(
       x,
       y,

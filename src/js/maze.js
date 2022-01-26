@@ -59,10 +59,11 @@ export default class Maze {
       current._highlight(this.columns);
     }
     if (this.stack.length === 0) {
-      return;
+      this._drawGoal(this.goal);
     }
     window.requestAnimationFrame(() => {
       this._draw();
     });
   }
+  _drawGoal(goal) {}
 }
