@@ -31,6 +31,8 @@ export default class Maze {
       this.grid.push(row);
     }
     current = this.grid[0][0]; //Start of the path
+
+    this._draw();
   }
   _draw() {
     maze.width = this.size;
