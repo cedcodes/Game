@@ -1,16 +1,7 @@
 import Cell from './cell.js';
 
-// let maze = document.querySelector('canvas');
-
-// let ctx = maze.getContext('2d');
-
-// let current;
-
 export default class Maze {
-  // initialize maze
-  // constructor(size, rows, columns) {
   constructor(ctx, width, height, rows, columns) {
-    // this.size = size;
     this.ctx = ctx;
     this.width = width;
     this.height = height;
@@ -20,15 +11,10 @@ export default class Maze {
     this.cellWidth = width / columns;
     this.cellHeight = height / rows;
 
-    // creates 2D array
-    // Store individual arrays
-    this.grid = [];
-    // push pop
-    this.stack = [];
+    this.grid = []; //Store individual cells
+    this.stack = []; //Push each cell(visited) to track previous steps
   }
-  // Methods
-
-  // Draw the Grid
+  // Grid define
   _setup() {
     for (let r = 0; r < this.rows; r++) {
       let row = [];
@@ -44,7 +30,6 @@ export default class Maze {
 
     this._draw();
   }
-  // DrawMap
   _draw() {
     let maze = document.querySelector('canvas');
 
@@ -56,28 +41,16 @@ export default class Maze {
 
     this.grid.forEach((row) => row.forEach((col) => col._drawCell()));
 
-    // for (let r = 0; r < this.rows; r++) {
-    //   for (let c = 0; c < this.columns; c++) {
-    //     let grid = this.grid;
-    //     grid[r][c]._drawCell(this.size, this.rows, this.columns);
-    //   }
-    // }
-
     let nextCell = this.current._checkNeighbors(this.grid);
     if (nextCell) {
       nextCell.visited = true;
       this.stack.push(this.current);
-      // current._highlight(this.columns);
 
       this.current._removeWall(nextCell);
       this.current = nextCell;
     } else if (this.stack.length > 0) {
       this.current = this.stack.pop();
-
-      // current._highlight(this.columns);
     }
-
-    // this.gridLastColumn = this.grid[0].length - 1;
 
     window.requestAnimationFrame(() => {
       this._draw();
