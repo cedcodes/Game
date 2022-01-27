@@ -1,10 +1,10 @@
 import Cell from './cell.js';
 
-let maze = document.querySelector('canvas');
+// let maze = document.querySelector('canvas');
 
 // let ctx = maze.getContext('2d');
 
-let current;
+// let current;
 
 export default class Maze {
   // initialize maze
@@ -40,18 +40,21 @@ export default class Maze {
       this.grid.push(row);
     }
 
-    current = this.grid[0][0]; //Start of the path
+    this.current = this.grid[0][0]; //Start of the path
 
     this._draw();
   }
   // DrawMap
   _draw() {
+    let maze = document.querySelector('canvas');
+
     maze.width = this.width;
     maze.height = this.height;
-    maze.style.background = 'black';
-    current.visited = true;
 
-    this.grid.forEach((row) => row.forEach((col) => col._draw()));
+    maze.style.background = 'black';
+    this.current.visited = true;
+
+    this.grid.forEach((row) => row.forEach((col) => col._drawCell()));
 
     // for (let r = 0; r < this.rows; r++) {
     //   for (let c = 0; c < this.columns; c++) {
@@ -60,17 +63,16 @@ export default class Maze {
     //   }
     // }
 
-    let next = current._checkNeighbors(this.grid);
+    let next = this.current._checkNeighbors(this.grid);
     if (next) {
       next.visited = true;
       this.stack.push(current);
       // current._highlight(this.columns);
 
-      current._removeWall(current, next);
-
-      current = next;
+      this.current._removeWall(next);
+      this.current = next;
     } else if (this.stack.length > 0) {
-      current = this.stack.pop();
+      this.current = this.stack.pop();
 
       // current._highlight(this.columns);
     }
