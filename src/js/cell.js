@@ -4,7 +4,7 @@
 
 export default class Cell {
   constructor(ctx, rowNum, colNum, width, height) {
-    this.ctx;
+    this.ctx = ctx;
     this.rowNum = rowNum;
     this.colNum = colNum;
 
@@ -34,7 +34,6 @@ export default class Cell {
     this.ctx.strokeStyle = 'white';
     this.ctx.fillStyle = 'black';
     this.ctx.lineWidth = '2';
-    ctx;
     if (this.walls.topWall) this._drawTopWall(this.xCoord, this.yCoord);
     if (this.walls.rightWall) this._drawRightWall(this.xCoord, this.yCoord);
     if (this.walls.bottomWall) this._drawBottomWall(this.xCoord, this.yCoord);
@@ -45,29 +44,29 @@ export default class Cell {
   }
   _drawTopWall() {
     this.ctx.beginPath();
-    this.ctx.moveTo(this.xCord, this.yCord);
-    this.ctx.lineTo(this.xCord + this.width, this.yCord);
+    this.ctx.moveTo(this.xCoord, this.yCoord);
+    this.ctx.lineTo(this.xCoord + this.width, this.yCoord);
     this.ctx.stroke();
   }
   _drawBottomWall() {
     this.ctx.beginPath();
-    this.ctx.moveTo(this.xCord, this.yCord + this.height);
-    this.ctx.lineTo(this.xCord + this.width, this.yCord + this.height);
+    this.ctx.moveTo(this.xCoord, this.yCoord + this.height);
+    this.ctx.lineTo(this.xCoord + this.width, this.yCoord + this.height);
     this.ctx.stroke();
   }
   _drawLeftWall() {
     this.ctx.beginPath();
-    this.ctx.moveTo(this.xCord, this.yCord);
-    this.ctx.lineTo(this.xCord, this.yCord + this.height);
+    this.ctx.moveTo(this.xCoord, this.yCoord);
+    this.ctx.lineTo(this.xCoord, this.yCoord + this.height);
     this.ctx.stroke();
   }
   _drawRightWall() {
     this.ctx.beginPath();
-    this.ctx.moveTo(this.xCord + this.width, this.yCord);
-    this.ctx.lineTo(this.xCord + this.width, this.yCord + this.height);
+    this.ctx.moveTo(this.xCoord + this.width, this.yCoord);
+    this.ctx.lineTo(this.xCoord + this.width, this.yCoord + this.height);
     this.ctx.stroke();
   }
-  _removeWall(cell1, cell2, nextCell) {
+  _removeWall(nextCell) {
     let columnDiff = nextCell.colNum - this.colNum;
     let rowDiff = nextCell.rowNum - this.rowNum;
 

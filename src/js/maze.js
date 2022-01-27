@@ -63,14 +63,14 @@ export default class Maze {
     //   }
     // }
 
-    let next = this.current._checkNeighbors(this.grid);
-    if (next) {
-      next.visited = true;
-      this.stack.push(current);
+    let nextCell = this.current._checkNeighbors(this.grid);
+    if (nextCell) {
+      nextCell.visited = true;
+      this.stack.push(this.current);
       // current._highlight(this.columns);
 
-      this.current._removeWall(next);
-      this.current = next;
+      this.current._removeWall(nextCell);
+      this.current = nextCell;
     } else if (this.stack.length > 0) {
       this.current = this.stack.pop();
 
