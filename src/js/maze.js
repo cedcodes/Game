@@ -2,17 +2,23 @@ import Cell from './cell.js';
 
 let maze = document.querySelector('canvas');
 
-let ctx = maze.getContext('2d');
+// let ctx = maze.getContext('2d');
 
 let current;
+
 export default class Maze {
   // initialize maze
-  constructor(size, rows, columns) {
-    this.size = size;
+  // constructor(size, rows, columns) {
+  constructor(ctx, width, height, rows, columns) {
+    // this.size = size;
+    this.ctx = ctx;
+    this.width = width;
+    this.height = height;
     this.rows = rows;
     this.columns = columns;
 
     // creates 2D array
+    // Store individual arrays
     this.grid = [];
     // push pop
     this.stack = [];
@@ -43,7 +49,7 @@ export default class Maze {
     for (let r = 0; r < this.rows; r++) {
       for (let c = 0; c < this.columns; c++) {
         let grid = this.grid;
-        grid[r][c]._show(this.size, this.rows, this.columns);
+        grid[r][c]._drawCell(this.size, this.rows, this.columns);
       }
     }
     let next = current._checkNeighbors();
@@ -67,5 +73,4 @@ export default class Maze {
       this._draw();
     });
   }
-  _drawGoal(goal) {}
 }

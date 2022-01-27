@@ -42,8 +42,7 @@ function resetRowCol() {
 }
 
 function initiate() {
-  let newMaze = new Maze(ctx, CustomRows, CustomColumns, Width, Height);
-
+  let newMaze = new Maze(500, 10, 10);
   newMaze._setup();
 }
 
