@@ -17,6 +17,9 @@ export default class Maze {
     this.rows = rows;
     this.columns = columns;
 
+    this.cellWidth = width / columns;
+    this.cellHeight = height / rows;
+
     // creates 2D array
     // Store individual arrays
     this.grid = [];
@@ -31,44 +34,49 @@ export default class Maze {
       let row = [];
       for (let c = 0; c < this.columns; c++) {
         // create a cell
-        let cell = new Cell(r, c, this.grid, this.size);
+        let cell = new Cell(this.ctx, r, c, this.cellWidth, this.cellHeight);
         row.push(cell);
       }
       this.grid.push(row);
     }
+
     current = this.grid[0][0]; //Start of the path
 
     this._draw();
   }
+  // DrawMap
   _draw() {
-    maze.width = this.size;
-    maze.height = this.size;
+    maze.width = this.width;
+    maze.height = this.height;
     maze.style.background = 'black';
     current.visited = true;
 
-    for (let r = 0; r < this.rows; r++) {
-      for (let c = 0; c < this.columns; c++) {
-        let grid = this.grid;
-        grid[r][c]._drawCell(this.size, this.rows, this.columns);
-      }
-    }
-    let next = current._checkNeighbors();
+    this.grid.forEach((row) => row.forEach((col) => col._draw()));
+
+    // for (let r = 0; r < this.rows; r++) {
+    //   for (let c = 0; c < this.columns; c++) {
+    //     let grid = this.grid;
+    //     grid[r][c]._drawCell(this.size, this.rows, this.columns);
+    //   }
+    // }
+
+    let next = current._checkNeighbors(this.grid);
     if (next) {
       next.visited = true;
       this.stack.push(current);
-      current._highlight(this.columns);
+      // current._highlight(this.columns);
 
       current._removeWall(current, next);
 
       current = next;
     } else if (this.stack.length > 0) {
-      let cell = this.stack.pop();
-      current = cell;
-      current._highlight(this.columns);
+      current = this.stack.pop();
+
+      // current._highlight(this.columns);
     }
-    if (this.stack.length === 0) {
-      this._drawGoal(this.goal);
-    }
+
+    // this.gridLastColumn = this.grid[0].length - 1;
+
     window.requestAnimationFrame(() => {
       this._draw();
     });
