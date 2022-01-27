@@ -12,7 +12,9 @@ let CustomColumn = CustomGrid[1].value;
 // ******************** SET MAZE COLUMN & ROW SIZES *****************************//
 let btnChange = document.querySelector('#button');
 
-btnChange.addEventListener('click', () => {
+btnChange.addEventListener('click', (e) => {
+  e.preventDefault();
+
   if (
     CustomGrid[0].value !== CustomRow ||
     CustomGrid[1].value !== CustomColumn
