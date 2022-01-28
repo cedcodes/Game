@@ -10,6 +10,7 @@ body {
 label {
   font-size: 30px;
 }
+
 select {
   margin: 0 15px;
   background: #54f84eb5;
@@ -35,5 +36,20 @@ button {
 @media screen and (max-width: 912px) {
   .wrap {
     flex-direction: column;
+  }
+}
+@media screen and (max-width: 600px) {
+  canvas {
+    width: 400px;
+  }
+}
+@media screen and (max-width: 500px) {
+  canvas {
+    width: 350px;
+  }
+}
+@media screen and (max-width: 355px) {
+  canvas {
+    width: 300px;
   }
 }
