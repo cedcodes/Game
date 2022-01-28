@@ -22,7 +22,7 @@ export default class Cell {
   }
   _drawCell() {
     this.ctx.strokeStyle = '#1FEA00';
-    this.ctx.strokeStyle = 'white';
+    this.ctx.strokeStyle = '#1FEA00';
     this.ctx.fillStyle = 'black';
     this.ctx.lineWidth = '2';
     if (this.walls.topWall) this._drawTopWall(this.xCoord, this.yCoord);
