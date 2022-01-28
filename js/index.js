@@ -1,10 +1,10 @@
-// to create individual cell
 import Maze from './maze.js';
 const maze = document.querySelector('canvas');
 const ctx = maze.getContext('2d');
 let Width, Height;
 
-// Define row and column nCustomGridumber
+// User defined colNum and rowNum
+// Define row and column CustomGrid Number
 let CustomGrid = document.querySelectorAll('#rows, #columns');
 let CustomRow = CustomGrid[0].value;
 let CustomColumn = CustomGrid[1].value;
@@ -14,7 +14,7 @@ let btnChange = document.querySelector('#button');
 
 btnChange.addEventListener('click', (e) => {
   e.preventDefault();
-
+  // if either of #rows and #columns has changed
   if (
     CustomGrid[0].value !== CustomRow ||
     CustomGrid[1].value !== CustomColumn
