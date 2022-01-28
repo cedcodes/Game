@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: #000000;
+  color: #ffffff;
+}
+label {
+  font-size: 30px;
+}
+select {
+  margin: 0 15px;
+  background: rgba(84, 248, 78, 0.71);
+  padding: 3px 10px;
+  font-size: 20px;
+  border: none;
+}
+.wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100vh;
+}
+button {
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 400;
+  outline: none;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.5) 0 5px 5px;
+}
+@media screen and (max-width: 912px) {
+  .wrap {
+    flex-direction: column;
+  }
+}

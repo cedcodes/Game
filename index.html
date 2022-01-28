@@ -6,32 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Maze Generator</title>
     <style>
-      canvas {
-        background-color: blue;
+      .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        height: 100vh;
+      }
+      @media screen and (max-width: 912px) {
+        .wrap {
+          flex-direction: column;
+        }
       }
     </style>
   </head>
   <body>
-    <form>
-      <div>
-        <label>Rows</label>
-        <select id="rows">
-          <option value="10" selected="selected">10</option>
-          <option value="15">15</option>
-          <option value="20">20</option>
-        </select>
-      </div>
-      <div>
-        <label>Columns</label>
-        <select id="columns">
-          <option value="10">10</option>
-          <option value="15">15</option>
-          <option value="20">20</option>
-        </select>
-      </div>
-      <button id="button">Change</button>
-    </form>
-    <canvas> </canvas>
+    <div class="wrap">
+      <form>
+        <div>
+          <label>Rows</label>
+          <select id="rows">
+            <option value="10" selected="selected">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+          </select>
+        </div>
+        <div>
+          <label>Columns</label>
+          <select id="columns">
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+          </select>
+        </div>
+        <button id="button">Change</button>
+      </form>
+      <canvas> </canvas>
+    </div>
   </body>
-  <script type="module" src="./src/js/index.js"></script>
+  <script type="module" src="./js/index.js"></script>
 </html>
