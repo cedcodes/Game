@@ -1,4 +1,6 @@
 import Cell from './cell.js';
+import Player from './player.js'
+
 
 export default class Maze {
   constructor(ctx, width, height, rows, columns) {
@@ -25,8 +27,14 @@ export default class Maze {
       }
       this.grid.push(row);
     }
+		// will be used to place player diagonally opposite to goal
+		this.gridLastRow = this.grid.length - 1;
+		this.gridLastColumn = this.grid[0].length - 1;
 
-    this.current = this.grid[0][0]; //Start of the path
+
+		// this.player = new Player(this);
+
+    this.current = this._startPoint(); //Start of the path
 
     this._draw();
   }
@@ -38,22 +46,28 @@ export default class Maze {
 
     maze.style.background = 'black';
     this.current.visited = true;
-
+    
     this.grid.forEach((row) => row.forEach((col) => col._drawCell()));
-
+    
     let nextCell = this.current._checkNeighbors(this.grid);
     if (nextCell) {
       nextCell.visited = true;
+      
       this.stack.push(this.current);
-
       this.current._removeWall(nextCell);
       this.current = nextCell;
     } else if (this.stack.length > 0) {
       this.current = this.stack.pop();
     }
-
+    
     window.requestAnimationFrame(() => {
       this._draw();
     });
+  }
+  _startPoint() {
+    let corners = [this.grid[0][0], this.grid[this.gridLastRow][0], this.grid[0][this.gridLastColumn],
+    this.grid[this.gridLastRow][this.gridLastColumn]];
+  
+    return corners[Math.floor(Math.random() * 4)];
   }
 }
