@@ -2,6 +2,7 @@ import Maze from './maze.js';
 const maze = document.querySelector('canvas');
 const ctx = maze.getContext('2d');
 let Width, Height;
+let NEWMAZE // Maze generation
 
 // User defined colNum and rowNum
 // Define row and column CustomGrid Number
@@ -44,8 +45,8 @@ function resetRowCol() {
 }
 
 function initiate() {
-  let newMaze = new Maze(ctx, Width, Height, CustomRow, CustomColumn);
-  newMaze._setup();
+ NEWMAZE = new Maze(ctx, Width, Height, CustomRow, CustomColumn);
+  NEWMAZE._setup();
 }
 
 setCanvasSize();
