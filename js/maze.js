@@ -1,5 +1,4 @@
 import Cell from './cell.js';
-import Player from './player.js'
 
 
 export default class Maze {
@@ -18,11 +17,11 @@ export default class Maze {
   }
   // Grid define
   _setup() {
-    for (let r = 0; r < this.rows; r++) {
+    for (let rowNum = 0; rowNum < this.rows; rowNum++) {
       let row = [];
-      for (let c = 0; c < this.columns; c++) {
+      for (let colNum = 0; colNum < this.columns; colNum++) {
         // create a cell
-        let cell = new Cell(this.ctx, r, c, this.cellWidth, this.cellHeight);
+        let cell = new Cell(this.ctx, rowNum, colNum, this.cellWidth, this.cellHeight);
         row.push(cell);
       }
       this.grid.push(row);
@@ -56,10 +55,17 @@ export default class Maze {
       this.stack.push(this.current);
       this.current._removeWall(nextCell);
       this.current = nextCell;
-    } else if (this.stack.length > 0) {
+    }
+     else if (this.stack.length > 0) {
       this.current = this.stack.pop();
     }
-    
+    if (this.stack.length === 0) {
+			this.goal = this.current;
+			this._drawGoal(this.goal);
+
+			return;
+		}
+		
     window.requestAnimationFrame(() => {
       this._draw();
     });
@@ -70,4 +76,16 @@ export default class Maze {
   
     return corners[Math.floor(Math.random() * 4)];
   }
+
+	_drawGoal(goal) {
+		let boat = new Image();
+
+
+		// adjust boat position according to its size
+		boat.xPos = goal.xCoord - boat.width/15;
+		boat.yPos = goal.yCoord - boat.height/15
+
+		boat.onload = ()=> goal.ctx.drawImage(boat, boat.xPos, boat.yPos, boat.width, boat.height);
+		boat.src = "./images/goal.png";
+	}
 }
