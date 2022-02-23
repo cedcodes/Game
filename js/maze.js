@@ -80,6 +80,8 @@ export default class Maze {
 	_drawGoal(goal) {
 		let boat = new Image();
 
+	  boat.width = goal.width * 1;			// scale boat inside goal cell
+		boat.height = goal.height * 1;
 
 		// adjust boat position according to its size
 		boat.xPos = goal.xCoord - boat.width/15;
