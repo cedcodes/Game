@@ -1,5 +1,5 @@
 import Cell from './cell.js';
-
+import Player from './player.js'
 
 export default class Maze {
   constructor(ctx, width, height, rows, columns) {
@@ -31,7 +31,7 @@ export default class Maze {
 		this.gridLastColumn = this.grid[0].length - 1;
 
 
-		// this.player = new Player(this);
+		this.player = new Player(this);
 
     this.current = this._startPoint(); //Start of the path
 
@@ -62,6 +62,9 @@ export default class Maze {
     if (this.stack.length === 0) {
 			this.goal = this.current;
 			this._drawGoal(this.goal);
+      this.player._setPlayer();
+
+
 
 			return;
 		}
