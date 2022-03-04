@@ -87,8 +87,8 @@ export default class Maze {
 		boat.height = goal.height * 1;
 
 		// adjust boat position according to its size
-		boat.xPos = goal.xCoord - boat.width/15;
-		boat.yPos = goal.yCoord - boat.height/15
+		boat.xPos = goal.xCoord - boat.width/50;
+		boat.yPos = goal.yCoord - boat.height/50
 
 		boat.onload = ()=> goal.ctx.drawImage(boat, boat.xPos, boat.yPos, boat.width, boat.height);
 		boat.src = "./images/goal.png";
