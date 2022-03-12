@@ -47,7 +47,22 @@ function resetRowCol() {
 function initiate() {
  NEWMAZE = new Maze(ctx, Width, Height, CustomRow, CustomColumn);
   NEWMAZE._setup();
+  listenMoves();
+
 }
 
 setCanvasSize();
 initiate();
+
+// ******************* MOVE EVENTS *************************************************//
+
+function listenMoves() {
+	window.addEventListener("keydown", handleKeyDown);
+}
+function handleKeyDown(evt) {
+	let Player = NEWMAZE.player;
+	Player._move({ keyCode: evt.keyCode });
+}
+
+
+

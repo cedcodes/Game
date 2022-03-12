@@ -4,6 +4,8 @@ export default class Player {
     this.ctx = maze.ctx;
 		this.width = maze.cellWidth;
 		this.height = maze.cellHeight;
+		this.stepCount = 0;
+
   }
 
   _setPlayer(){
@@ -30,6 +32,52 @@ export default class Player {
 		zoro.src = "./images/player.png";
 
 		this.stepCount++;
+	}
+
+	// data = key
+	// gestureTarget = value
+	_move(data, gestureTarget) {
+		let current = this.maze.grid[this.rowNum][this.colNum];
+		let walls = current.walls;
+
+		// if clicked, Player is moved
+		let changeOccurred = false;
+
+		if(gestureTarget === undefined) // if gestureTarget isn't passed in i.e. it's a keyboard move
+			changeOccurred = this._testCases(data.keyCode, 65, 87, 68, 83, walls);
+		else
+			changeOccurred = this._testCases(gestureTarget, data.left, data.top, data.right, data.bottom, walls);
+		if(changeOccurred) {
+			current._drawCell();
+			this._drawPlayer();
+		}
+	}
+
+	// TestCases for Move Events
+	_testCases(test, case1, case2, case3, case4, walls) {
+		switch(test) {
+			case case1:
+				if (!walls.leftWall) {
+					this.colNum -= 1;		return true;
+				}	break;
+
+			case case2:
+				if (!walls.topWall) {
+					this.rowNum -= 1; 	return true;
+				}	break;
+
+			case case3:
+				if (!walls.rightWall) {
+					this.colNum += 1; 	return true;
+				}	break;
+
+			case case4:
+				if (!walls.bottomWall) {
+					this.rowNum += 1; 	return true;
+				}	break;
+
+			default: return undefined;
+		}
 	}
 
 }
