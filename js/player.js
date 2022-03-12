@@ -48,6 +48,9 @@ export default class Player {
 		else
 			changeOccurred = this._testCases(gestureTarget, data.left, data.top, data.right, data.bottom, walls);
 		if(changeOccurred) {
+
+			
+			this.ctx.clearRect(current.xCoord, current.yCoord, current.width, current.height);// removes the repeating image of player
 			current._drawCell();
 			this._drawPlayer();
 		}
