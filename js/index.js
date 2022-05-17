@@ -57,12 +57,46 @@ initiate();
 // ******************* MOVE EVENTS *************************************************//
 
 function listenMoves() {
-	window.addEventListener("keydown", handleKeyDown);
+	window.addEventListener('keydown', handleKeyDown);
 }
 function handleKeyDown(evt) {
 	let Player = NEWMAZE.player;
 	Player._move({ keyCode: evt.keyCode });
+  checkCompletion()
 }
 
+// ******************* COMPLETION *************************************************//
+
+let gameComplete =document.querySelector('.complete')
+let gameCompleteText = document.querySelector('.complete h1')
+let btnRestart = document.querySelector('.restart')
+
+function checkCompletion() {
+	let Player = NEWMAZE.player;
+	let reachedCol = Player.colNum === NEWMAZE.goal.colNum;
+	let reachedRow = Player.rowNum === NEWMAZE.goal.rowNum;
+
+	if (reachedRow && reachedCol) {
+		mazeComplete();
+	}
+}
+// Complete Maze
+function mazeComplete() {
+	let Player = NEWMAZE.player;
+  gameCompleteText.innerHTML=`By taking ${Player.stepCount} steps, you've assisted Zoro in reaching his crewmates.`
+
+  gameComplete.classList.add('show')
+
+  btnRestart.addEventListener('click', restartMaze)
+}
+
+// Restart Maze
+
+function restartMaze(){
+initiate()
+gameComplete.classList.remove('show')
+gameCompleteText.innerHTML=``
+btnRestart.removeEventListener('click', restartMaze)
 
 
+}
