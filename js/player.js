@@ -24,7 +24,7 @@ export default class Player {
 		let zoro = new Image();
 		
 		zoro.height = this.height * 1;					// scale zoro inside 'player' cell
-		zoro.yPos = this.yCord - zoro.height/15;		// adjust vertical pos according to zoro's height
+		zoro.yPos = this.yCord - zoro.height/150;		// adjust vertical pos according to zoro's height
 
 		let player = this;
 
