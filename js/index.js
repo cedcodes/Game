@@ -68,7 +68,7 @@ function handleKeyDown(evt) {
 // ******************* COMPLETION *************************************************//
 
 let gameComplete =document.querySelector('.complete')
-let gameCompleteText = document.querySelector('.complete h1')
+let gameCompleteText = document.querySelector('.complete h2')
 let btnRestart = document.querySelector('.restart')
 
 function checkCompletion() {
@@ -83,7 +83,7 @@ function checkCompletion() {
 // Complete Maze
 function mazeComplete() {
 	let Player = NEWMAZE.player;
-  gameCompleteText.innerHTML=`By taking ${Player.stepCount} steps, you've assisted Zoro in reaching his crewmates.`
+  gameCompleteText.innerHTML=`You assisted Zoro by taking ${Player.stepCount-1} steps.`
 
   gameComplete.classList.add('show')
 
