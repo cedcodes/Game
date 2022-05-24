@@ -2,6 +2,7 @@ import Maze from './maze.js';
 const maze = document.querySelector('canvas');
 const ctx = maze.getContext('2d');
 let Width, Height;
+let NEWMAZE // Maze generation
 
 // User defined colNum and rowNum
 // Define row and column CustomGrid Number
@@ -44,9 +45,58 @@ function resetRowCol() {
 }
 
 function initiate() {
-  let newMaze = new Maze(ctx, Width, Height, CustomRow, CustomColumn);
-  newMaze._setup();
+ NEWMAZE = new Maze(ctx, Width, Height, CustomRow, CustomColumn);
+  NEWMAZE._setup();
+  listenMoves();
+
 }
 
 setCanvasSize();
 initiate();
+
+// ******************* MOVE EVENTS *************************************************//
+
+function listenMoves() {
+	window.addEventListener('keydown', handleKeyDown);
+}
+function handleKeyDown(evt) {
+	let Player = NEWMAZE.player;
+	Player._move({ keyCode: evt.keyCode });
+  checkCompletion()
+}
+
+// ******************* COMPLETION *************************************************//
+
+let gameComplete =document.querySelector('.complete')
+let gameCompleteText = document.querySelector('.complete h2')
+let btnRestart = document.querySelector('.restart')
+
+function checkCompletion() {
+	let Player = NEWMAZE.player;
+	let reachedCol = Player.colNum === NEWMAZE.goal.colNum;
+	let reachedRow = Player.rowNum === NEWMAZE.goal.rowNum;
+
+	if (reachedRow && reachedCol) {
+		mazeComplete();
+	}
+}
+// Complete Maze
+function mazeComplete() {
+	let Player = NEWMAZE.player;
+  gameCompleteText.innerHTML=`You assisted Zoro by taking ${Player.stepCount-1} steps.`
+
+  gameComplete.classList.add('show')
+
+  btnRestart.addEventListener('click', restartMaze)
+}
+
+// Restart Maze
+
+function restartMaze(){
+initiate()
+gameComplete.classList.remove('show')
+gameCompleteText.innerHTML=``
+btnRestart.removeEventListener('click', restartMaze)
+
+
+}

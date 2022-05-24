@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -6,11 +9,21 @@
 body {
   background: #000000;
   color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  
 }
 label {
   font-size: 30px;
 }
+.rows, .columns {
+  padding: .5rem 0;
 
+}
+button:hover  {
+  background: #54f84eb5;
+  color: #fff;
+
+}
 select {
   margin: 0 15px;
   background: #54f84eb5;
@@ -19,6 +32,7 @@ select {
   border: none;
 }
 .wrap {
+  text-align: center;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -34,8 +48,17 @@ button {
   box-shadow: rgba(0, 0, 0, 0.5) 0 5px 5px;
 }
 @media screen and (max-width: 912px) {
+
   .wrap {
+  
+    margin-top: 40%;
     flex-direction: column;
+  }
+  h1{
+    font-size: 2rem;
+  }
+  h2{
+    font-size: 1.5rem;
   }
 }
 @media screen and (max-width: 600px) {
@@ -52,4 +75,70 @@ button {
   canvas {
     width: 300px;
   }
+}
+
+.generate-maze, .complete{
+  display: none;
+}
+.generate-maze, .complete{
+  position: absolute;
+	width: 100%;
+  height: 100vh;
+	background: rgba(29, 28, 28, 0.71);
+	color: rgba(255, 255, 255);
+	text-align: center;
+}
+.key-container {  
+  margin: 0 auto;
+  width: 200px;
+  text-align: center;
+  padding: 2rem 0;
+
+}
+.keys {
+  background-color: #000;
+  border: 1px solid #54f84eb5;
+  box-shadow: 5px 5px #54f84eb5;
+  color: #ffffff;
+  width: 50px;
+  margin: 5px;
+  text-align: center;
+  top: 0;
+  left: 0;
+  transition: all 0.07s ease;
+}
+.top {
+  width: 60px;
+
+  margin: 0 auto;
+
+}
+.bottom {
+  display: inline-flex;
+}
+.instruction {
+  padding: 1rem;
+  border: 3px  solid green ;
+  border-radius: 5px;
+}
+.instruction h2 {
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.6;
+  font-size: 2rem;
+}
+
+h1{
+margin-top: 20vh;
+  font-size: 5rem;
+
+}
+.generate-maze h2, .complete h2{
+  font-size: 3rem;
+  padding: 2rem;
+
+
+}
+
+.show {
+	display: initial;
 }
